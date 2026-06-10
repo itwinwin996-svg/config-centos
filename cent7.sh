@@ -52,6 +52,8 @@ sed -i "s/^Hostname=Zabbix server/# Hostname=Zabbix server/g" "$CONFIG_FILE"
 sed -i "s/# HostnameItem=system.hostname/HostnameItem=system.hostname/g" "$CONFIG_FILE"
 
 # 4. เปิดใช้งานและ Restart Service
+firewall-cmd --permanent --add-port=10050/tcp
+firewall-cmd --reload
 systemctl restart zabbix-agent2
 systemctl enable zabbix-agent2
 
