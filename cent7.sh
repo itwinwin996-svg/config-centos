@@ -44,7 +44,7 @@ yum clean all
 yum -y install zabbix-agent2 zabbix-agent2-plugin-mongodb zabbix-agent2-plugin-mssql zabbix-agent2-plugin-postgresql
 
 # 3. แก้ไข Configuration ไฟล์โดยใช้ IP จาก Argument
-CONFIG_FILE="/etc/zabbix/zabbix_agentd.conf"
+CONFIG_FILE="/etc/zabbix/zabbix_agent2.conf"
 
 sed -i "s/^Server=127.0.0.1/Server=$ZABBIX_SERVER_IP/g" "$CONFIG_FILE"
 sed -i "s/^ServerActive=127.0.0.1/ServerActive=$ZABBIX_SERVER_IP/g" "$CONFIG_FILE"
