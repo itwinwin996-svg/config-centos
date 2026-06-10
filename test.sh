@@ -21,6 +21,7 @@ gpgkey=https://vault.centos.org/6.10/os/$basearch/RPM-GPG-KEY-CentOS-6
 EOF
 
 # 2. สั่งติดตั้ง Zabbix Agent
+rpm -Uvh https://repo.zabbix.com/zabbix/7.0/rhel/6/x86_64/zabbix-release-latest-7.0.el6.noarch.rpm
 yum clean all
 yum install -y zabbix-agent
 
