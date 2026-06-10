@@ -34,7 +34,7 @@ sed -i "s/^Hostname=Zabbix server/# Hostname=Zabbix server/g" "$CONFIG_FILE"
 sed -i "s/# HostnameItem=system.hostname/HostnameItem=system.hostname/g" "$CONFIG_FILE"
 
 # 4. เปิดใช้งานและ Restart Service
-chkconfig zabbix-agent on
 service zabbix-agent restart
+chkconfig zabbix-agent on
 
 echo "Zabbix Agent installed and configured successfully with Server IP: $ZABBIX_SERVER_IP"
