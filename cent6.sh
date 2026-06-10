@@ -14,10 +14,28 @@ ZABBIX_SERVER_IP="$1"
 # 1. เปลี่ยนตำแหน่ง YUM Repo ไปที่ Vault
 cat << 'EOF' > /etc/yum.repos.d/CentOS-Base.repo
 [base]
-name=CentOS-6 - Base
-baseurl=https://vault.centos.org/6.10/os/$basearch/
-gpgcheck=1
-gpgkey=https://vault.centos.org/6.10/os/$basearch/RPM-GPG-KEY-CentOS-6
+name=CentOS-6.10 Base
+baseurl=http://vault.centos.org/6.10/os/x86_64/
+enabled=1
+gpgcheck=0
+
+[updates]
+name=CentOS-6.10 Updates
+baseurl=http://vault.centos.org/6.10/updates/x86_64/
+enabled=1
+gpgcheck=0
+
+[extras]
+name=CentOS-6.10 Extras
+baseurl=http://vault.centos.org/6.10/extras/x86_64/
+enabled=1
+gpgcheck=0
+
+[epel]
+name=EPEL-6 Archive
+baseurl=http://archives.fedoraproject.org/pub/archive/epel/6/x86_64/
+enabled=1
+gpgcheck=0
 EOF
 
 # 2. สั่งติดตั้ง Zabbix Agent
@@ -35,6 +53,6 @@ sed -i "s/# HostnameItem=system.hostname/HostnameItem=system.hostname/g" "$CONFI
 
 # 4. เปิดใช้งานและ Restart Service
 service zabbix-agent restart
-chkconfig zabbix-agent on
+chkconfig --level 35 zabbix-agent on
 
 echo "Zabbix Agent installed and configured successfully with Server IP: $ZABBIX_SERVER_IP"
